@@ -1,5 +1,9 @@
-import React from "react";
+import Navbar from "../Navbar/Navbar";
 
 export default function Landing() {
-	return <div>Landing</div>;
+	return (
+		<>
+			<Navbar />
+		</>
+	);
 }

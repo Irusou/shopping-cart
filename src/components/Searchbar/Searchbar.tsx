@@ -1,25 +1,13 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./Searchbar.css";
+import { BiSearch } from "react-icons/bi";
 
-interface SearchbarProps {
-	items?: [];
-}
+export default function Searchbar() {
+	const [value, setValue] = useState("");
 
-export default function Searchbar({ items }: SearchbarProps) {
-	const [filter, setFilter] = useState("");
-
-	const filterArray = (items: []) => {
-		var newArr = items;
-
-		try {
-			newArr.find((item) => {
-				item === filter;
-			});
-
-			return newArr;
-		} catch (e) {
-			console.log(e);
-		}
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		console.log(e.target.value);
+		setValue(e.target.value);
 	};
 
 	return (
@@ -30,12 +18,9 @@ export default function Searchbar({ items }: SearchbarProps) {
 					name="search-box"
 					id="search-box"
 					placeholder="Search.."
-					onChange={() => filterArray}
-					value={filter}
+					value={value}
+					onChange={(e) => handleChange(e)}
 				/>
-				<div className="search-icon">
-					<span>{/** 	TODO: Import icon from font-awesome */}</span>
-				</div>
 			</form>
 		</div>
 	);

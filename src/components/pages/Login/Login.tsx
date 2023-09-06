@@ -43,7 +43,7 @@ export default function Login() {
 		<>
 			<div className="login-form">
 				{islogin ? (
-					<form onSubmit={handleLogin}>
+					<form onSubmit={handleLogin} action="/users" method="GET">
 						<div className="form-selector">
 							<button
 								type="button"
@@ -90,7 +90,7 @@ export default function Login() {
 						</button>
 					</form>
 				) : (
-					<form onSubmit={handleRegister}>
+					<form onSubmit={handleRegister} action="/users" method="POST">
 						<div className="form-selector">
 							<button type="button" onClick={() => setIsLogin(true)}>
 								Login

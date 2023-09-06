@@ -1,31 +1,23 @@
 import "./App.css";
 
-import Landing from "./components/pages/Landing";
-import Cart from "./components/pages/Cart";
-import Login from "./components/pages/Login";
+import Landing from "./components/pages/Landing/Landing";
+import Cart from "./components/pages/Cart/Cart";
+import Login from "./components/pages/Login/Login";
+import About from "./components/pages/About/About";
 
-import {
-	RouterProvider,
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
-} from "react-router-dom";
-import About from "./components/pages/About";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-	const router = createBrowserRouter(
-		createRoutesFromElements(
-			<Route path="/" element={<Landing />}>
-				<Route path="about" element={<About />} />
-				<Route path="cart" element={<Cart />} />
-				<Route path="login" element={<Login />} />
-			</Route>
-		)
-	);
-
 	return (
 		<>
-			<RouterProvider router={router} />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Landing />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }

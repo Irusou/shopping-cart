@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
 import "./Searchbar.css";
-import { BiSearch } from "react-icons/bi";
 
 export default function Searchbar() {
 	const [value, setValue] = useState("");

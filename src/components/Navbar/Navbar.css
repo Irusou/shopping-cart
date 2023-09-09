@@ -89,6 +89,7 @@
 		background: none;
 
 		z-index: 10;
+		cursor: pointer;
 	}
 
 	.open-menu {

@@ -1,6 +1,6 @@
 const usersModel = require("../models/usersModel");
 
-export class UsersController {
+class UsersController {
 	static getAll = async (_req, res) => {
 		const users = await usersModel.getAll();
 
@@ -12,4 +12,12 @@ export class UsersController {
 
 		return res.status(201).json(createdUser);
 	};
+
+	static deleteUser = async (req, res) => {
+		const deleteUser = await usersModel.deleteUser(req.body);
+
+		return res.status(201).json(deleteUser);
+	};
 }
+
+module.exports = UsersController;

@@ -2,65 +2,30 @@ import "./ItemsDisplay.css";
 
 import Card from "../Card/Card";
 import Item from "../../Item";
-import { useEffect, useState } from "react";
 import Searchbar from "../Searchbar/Searchbar";
-// import {useFetch} from "./../../useFetch";
+import useFetch from "../hooks/useFetch";
+import { useState } from "react";
 
 export default function ItemsDisplay() {
 	const url = "http://localhost:8008/items";
-
-	const useFetch: any = (url: string) => {
-		const [data, setData] = useState(null);
-		const [loading, setLoading] = useState(true);
-		const [error, setError] = useState(null);
-
-		useEffect(() => {
-			const abortController = new AbortController();
-
-			setTimeout(() => {
-				fetch(url, { signal: abortController.signal })
-					.then((res) => {
-						if (!res.ok) {
-							throw Error("could not fetch the data.");
-						}
-						return res.json();
-					})
-					.then((data) => {
-						setData(data);
-						setLoading(false);
-						setError(null);
-					})
-					.catch((err) => {
-						if (err.name === "AbortError") {
-							console.log("fetch aborted");
-						} else {
-							setError(err.message);
-							setLoading(false);
-						}
-					});
-			}, 1000);
-
-			return () => abortController.abort();
-		}, [url]);
-
-		return {
-			data,
-			loading,
-			error,
-		};
-	};
-
 	const { data: items, loading, error } = useFetch(url);
+
+	const [filteredItems, setFilteredItems] = useState<Item[]>(items);
+
+	const handleSearch = (sortedItems: Item[]) => {
+		// Update the state with the sorted items when the Searchbar component calls the callback
+		setFilteredItems(sortedItems);
+	};
 
 	return (
 		<>
-			<Searchbar itemsToFilter={items} />
 			<div className="items-container">
+				<Searchbar itemsToFilter={items} onSearch={handleSearch} />
 				{error && <div>{error}</div>}
 				{loading && <div>loading...</div>}
-				{items && (
-					<div>
-						{items.map((item: Item) => (
+				{filteredItems && (
+					<div className="items-grid">
+						{filteredItems.map((item: Item) => (
 							<Card item={item} key={item.item_id} />
 						))}
 					</div>

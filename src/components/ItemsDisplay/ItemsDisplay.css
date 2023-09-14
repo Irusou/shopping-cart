@@ -1,3 +1,14 @@
 .items-container {
-	background-color: cadetblue;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.items-grid {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: start;
+	justify-content: center;
+	gap: 20px;
 }

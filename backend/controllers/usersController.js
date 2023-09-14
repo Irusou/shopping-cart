@@ -7,6 +7,16 @@ class UsersController {
 		return res.status(200).json(users);
 	};
 
+	static getUserByName = async (req, res) => {
+		const user = await usersModel.getUserByName(req.params.name);
+
+		if (user === null) {
+			return res.status(404).json({ message: "Couldn't find user" });
+		}
+
+		return res.status(200).json(user);
+	};
+
 	static createUser = async (req, res) => {
 		const createdUser = await usersModel.createUser(req.body);
 

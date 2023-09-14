@@ -12,8 +12,26 @@ const getAll = async () => {
 	}
 };
 
+const getUserByName = async (name) => {
+	try {
+		const [user] = await connection.then((con) =>
+			con.execute("SELECT * FROM users WHERE users.user_name = ?", [name])
+		);
+
+		if (!user) {
+			return [];
+		}
+
+		return user;
+	} catch (e) {
+		console.error(`Couldn't find user with the name '${name}'`);
+	}
+};
+
 const createUser = async (user) => {
-	const { name, password } = user;
+	const { name, password, confirmPassword } = user;
+
+	if (password !== confirmPassword) return;
 
 	try {
 		const insertCartQuery = "INSERT INTO carts(cart_id) VALUES (null)";
@@ -33,8 +51,7 @@ const createUser = async (user) => {
 
 		return createdUser;
 	} catch (error) {
-		console.error("Error creating user:", error);
-		throw error;
+		console.error("Error creating user.");
 	}
 };
 
@@ -54,6 +71,7 @@ const deleteUser = async (id) => {
 
 module.exports = {
 	getAll,
+	getUserByName,
 	createUser,
 	deleteUser,
 };

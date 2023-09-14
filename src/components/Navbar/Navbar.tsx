@@ -10,8 +10,6 @@ export default function Navbar() {
 	const [open, setOpen] = useState(false);
 
 	const handleClick = () => {
-		console.log(open);
-
 		setOpen(!open);
 	};
 
@@ -34,7 +32,7 @@ export default function Navbar() {
 					<Link to={"/login"}>Auth</Link>
 				</li>
 			</ul>
-			<Searchbar />
+
 			<div className="menu">
 				<button className="menu-button" onClick={handleClick}>
 					<IconContext.Provider value={{ color: "white", className: "icon" }}>

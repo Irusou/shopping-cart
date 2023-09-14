@@ -7,16 +7,7 @@
 	align-items: center;
 }
 
-.form-container form {
-	height: 100%;
-
-	display: flex;
-	flex-direction: row;
-	justify-items: center;
-	align-items: center;
-}
-
-form input {
+input {
 	height: 40px;
 	max-width: 200px;
 	padding: 0 10px;
@@ -32,12 +23,12 @@ form input {
 	outline: none;
 }
 
-form input:hover {
+input:hover {
 	transition: 300ms linear;
 	background-color: #444;
 }
 
-form input:focus {
+input:focus {
 	transition: 0;
 	outline: 2px solid lightskyblue;
 }
@@ -58,15 +49,7 @@ form input:focus {
 		align-items: center;
 	}
 
-	.form-container form {
-		height: 100%;
-
-		display: flex;
-		justify-items: center;
-		align-items: center;
-	}
-
-	form input {
+	input {
 		max-width: 150px;
 		font-size: 1rem;
 	}

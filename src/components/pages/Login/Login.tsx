@@ -34,9 +34,16 @@ export default function Login() {
 
 	const handleRegister = (e: React.SyntheticEvent) => {
 		e.preventDefault();
-		if (username == "" || password == "" || confirmPassword == "") {
-			alert("Cannot be empty fields!");
-		}
+
+		fetch("http://localhost:3333/users", {
+			method: "POST",
+		}).then((response) => {
+			if (response.status == 200) {
+				alert("User registration successful!");
+			} else {
+				alert("User registration failed!");
+			}
+		});
 	};
 
 	return (
@@ -73,6 +80,7 @@ export default function Login() {
 									type="text"
 									onChange={handleUsernameChange}
 									value={username}
+									required
 								/>
 							</label>
 							<label>
@@ -81,6 +89,7 @@ export default function Login() {
 									type="password"
 									onChange={handlePasswordChange}
 									value={password}
+									required
 								/>
 							</label>
 						</div>
@@ -108,6 +117,7 @@ export default function Login() {
 									type="text"
 									onChange={handleUsernameChange}
 									value={username}
+									required
 								/>
 							</label>
 							<label>
@@ -116,6 +126,7 @@ export default function Login() {
 									type="password"
 									onChange={handlePasswordChange}
 									value={password}
+									required
 								/>
 							</label>
 							<label>
@@ -124,6 +135,7 @@ export default function Login() {
 									type="password"
 									onChange={handleConfirmPasswordChange}
 									value={confirmPassword}
+									required
 								/>
 							</label>
 						</div>

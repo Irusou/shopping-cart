@@ -3,6 +3,7 @@ import "./Card.css";
 
 interface CardProps {
 	item: Item;
+	key: number;
 }
 
 export default function Card({ item }: CardProps) {

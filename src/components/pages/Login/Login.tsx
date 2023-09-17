@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import "./Login.css";
+import Navbar from "../../Navbar/Navbar";
 
 export default function Login() {
 	const [islogin, setIsLogin] = useState(true);
@@ -35,7 +36,7 @@ export default function Login() {
 	const handleRegister = (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
-		fetch("http://localhost:3333/users", {
+		fetch("http://localhost:8008/users", {
 			method: "POST",
 		}).then((response) => {
 			if (response.status == 200) {
@@ -48,6 +49,7 @@ export default function Login() {
 
 	return (
 		<>
+			<Navbar />
 			<div className="login-form">
 				{islogin ? (
 					<form onSubmit={handleLogin} action="/users" method="GET">

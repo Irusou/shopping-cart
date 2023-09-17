@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./Searchbar.css";
 import Item from "../../Item";
 
@@ -14,19 +14,21 @@ export default function Searchbar({ itemsToFilter, onSearch }: SearchbarProps) {
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value;
 		setValue(inputValue);
-
-		// Filter and sort items based on the "item_name" property
-		const filteredAndSortedItems = itemsToFilter
-			.filter((item) =>
-				item.item_name.toLowerCase().includes(inputValue.toLowerCase())
-			)
-			.sort((a, b) => a.item_name.localeCompare(b.item_name));
-
-		setFilteredItems(filteredAndSortedItems);
-
-		// Call the callback function with the sorted array
-		onSearch(filteredAndSortedItems);
 	};
+
+	useEffect(() => {
+		if (value === "") {
+			setFilteredItems(itemsToFilter);
+		} else {
+			const filteredAndSortedItems = itemsToFilter
+				.filter((item) =>
+					item.item_name.toLowerCase().includes(value.toLowerCase())
+				)
+				.sort((a, b) => a.item_name.localeCompare(b.item_name));
+			setFilteredItems(filteredAndSortedItems);
+		}
+		onSearch(filteredItems);
+	}, [value, itemsToFilter, onSearch]);
 
 	return (
 		<div className="search-container">

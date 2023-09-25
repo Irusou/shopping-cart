@@ -12,3 +12,7 @@
 	justify-content: center;
 	gap: 20px;
 }
+
+.text-danger {
+	color: #e16b6b;
+}

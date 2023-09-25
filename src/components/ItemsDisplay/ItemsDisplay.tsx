@@ -25,7 +25,11 @@ export default function ItemsDisplay() {
 		<>
 			<div className="items-container">
 				<Searchbar itemsToFilter={items} onSearch={handleSearch} />
-				{error && <div>{error}</div>}
+				{error && (
+					<p className="text-danger">
+						No items available at the time. Try again at a different time.
+					</p>
+				)}
 				{loading && (
 					<ProgressBar
 						height="80"
@@ -34,7 +38,7 @@ export default function ItemsDisplay() {
 						wrapperStyle={{}}
 						wrapperClass="progress-bar-wrapper"
 						borderColor="#ffffff"
-						barColor="#71bdff"
+						barColor="#e16b6b"
 					/>
 				)}
 				{filteredItems && (
